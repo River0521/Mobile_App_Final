@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Pressable, Text, View, StyleSheet } from 'react-native'
+import { Modal, Pressable, Text, View, StyleSheet, TextInput } from 'react-native'
 
 export const Login = () => {
     const [modalVisible, setModalVisible] = useState(true);
@@ -7,28 +7,25 @@ export const Login = () => {
         <View style={styles.centeredView}>
             <Modal
                 animationType="slide"
-                transparent={true}
+                transparent={false}
+                backgroundColor="#42D1A6"
                 visible={modalVisible}
                 onRequestClose={() => {
                     Alert.alert('Modal has been closed.');
                     setModalVisible(!modalVisible);
                 }}>
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-                        <Pressable
+                <View style={styles.centeredView} >
+                    <View style={styles.modalView} backgroundColor="#42D1A6">
+                        <TextInput placeholder='User Name' />
+                        <TextInput placeholder='Password' secureTextEntry={true} />
+                        <Pressable className="mt-3"
                             style={[styles.button, styles.buttonClose]}
                             onPress={() => setModalVisible(!modalVisible)}>
-                            <Text style={styles.textStyle}>Hide Modal</Text>
+                            <Text style={styles.textStyle}>Login</Text>
                         </Pressable>
                     </View>
                 </View>
             </Modal>
-            <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalVisible(true)}>
-                <Text style={styles.textStyle}>Show Modal</Text>
-            </Pressable>
         </View>
     );
 };
@@ -42,7 +39,7 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: 'white',
+        backgroundColor: "#42D1A6",
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
