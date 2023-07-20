@@ -1,13 +1,8 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { AppNavigation } from '../navigation/appNavigation'
+import { Text } from 'react-native'
 
 export const HomeScreen = () => {
     return (
-        <View>
-            <Text>HomeScreen</Text>
-
-            <AppNavigation />
-        </View>
+        <Text className="flex-1">HomeScreen</Text>
     )
 }
