@@ -5,12 +5,16 @@ import { Login } from "./Login";
 import { NavigationContainer } from "@react-navigation/native";
 import { SessionScreen } from "./SessionScreen";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useNavigation } from "@react-navigation/native";
 
-export const HomeScreen = ({ navigate }) => {
-  const navigation = useNavigation();
-  const handleClick = () => {
-    navigation.navigate("Account", { screen: "Session" });
+export const HomeScreen = () => {
+  const Stack = createStackNavigator();
+
+  const nav = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="SessionScreen" component={SessionScreen} />
+      </Stack.Navigator>
+    );
   };
 
   return (
@@ -19,7 +23,7 @@ export const HomeScreen = ({ navigate }) => {
       <View className="flex-row justify-end content-end justify-items-end">
         <TouchableOpacity
           className="flex-row mt-2 items-center justify-end content-end justify-items-end"
-          onPress={handleClick}
+          onPress={nav}
         >
           <MaterialCommunityIcons
             name="account-circle"
