@@ -4,12 +4,14 @@ import { Pedometer } from "expo-sensors";
 import { useState } from "react";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const SessionScreen = () => {
   const [PedomaterAvailability, SetPedomaterAvailability] = useState("");
   const [StepCount, SetStepCount] = useState(0);
 
-  var Dist = StepCount / 1300;
+  var Dist = StepCount / 1300 / 1.609;
   var DistanceCovered = Dist.toFixed(4);
   var cal = DistanceCovered * 60;
   var caloriesBurnt = cal.toFixed(4);
@@ -35,36 +37,48 @@ export const SessionScreen = () => {
   };
 
   return (
-    <View>
-      <View style={{ justifyContent: "center" }}>
-        <Text>
+    <View style={{ flex: 1 }}>
+      <View>
+        <Text style={{ textAlign: "center" }}>
           Is Pedometer available on the device : {PedomaterAvailability}
         </Text>
       </View>
 
       <View>
-        <Text>{StepCount}</Text>
+        <Text style={{ textAlign: "center" }}>{StepCount} Steps!</Text>
       </View>
 
-      <View style={{ justifyContent: "center" }}>
+      <View>
         <View>
-          <Text style={[{ paddingLeft: 20, marginLeft: "23%" }]}>
-            Target : 6500 steps(5kms)
-          </Text>
+          <Text style={{ textAlign: "center" }}>Target : 6500 steps(5kms)</Text>
         </View>
 
-        <View style={{ justifyContent: "center" }}>
-          <Text style={[{ paddingLeft: 20, marginLeft: "23%" }]}>
-            Distance Covered : {DistanceCovered} km
+        <View>
+          <Text style={{ textAlign: "center" }}>
+            Distance Covered : {DistanceCovered} mi
           </Text>
         </View>
 
         <View>
-          <Text style={[{ paddingLeft: 10, marginLeft: "23%" }]}>
+          <Text style={{ textAlign: "center" }}>
             Calories Burnt : {caloriesBurnt}
           </Text>
         </View>
         <StatusBar style="auto" />
+      </View>
+
+      <View
+        className="justify-center"
+        style={{ position: "absolute", bottom: 50, width: "100%" }}
+      >
+        <TouchableOpacity className="flex-row align-bottom justify-center pb-2">
+          <MaterialCommunityIcons name="restart" size={24} color="#449DD1" />
+          <Text className="pl-3">Start Session!</Text>
+        </TouchableOpacity>
+        <TouchableOpacity className="flex-row align-bottom justify-center">
+          <Octicons name="stop" size={24} color="#449DD1" />
+          <Text className="pl-3">Finish Session!</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
