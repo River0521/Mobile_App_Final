@@ -2,29 +2,13 @@ import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Login } from "./Login";
-import { NavigationContainer } from "@react-navigation/native";
-import { SessionScreen } from "./SessionScreen";
-import { createStackNavigator } from "@react-navigation/stack";
 
 export const HomeScreen = () => {
-  const Stack = createStackNavigator();
-
-  const nav = () => {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen name="SessionScreen" component={SessionScreen} />
-      </Stack.Navigator>
-    );
-  };
-
   return (
     <View>
       <Login />
       <View className="flex-row justify-end content-end justify-items-end">
-        <TouchableOpacity
-          className="flex-row mt-2 items-center justify-end content-end justify-items-end"
-          onPress={nav}
-        >
+        <TouchableOpacity className="flex-row mt-2 items-center justify-end content-end justify-items-end">
           <MaterialCommunityIcons
             name="account-circle"
             size={50}
@@ -52,13 +36,3 @@ export const HomeScreen = () => {
     </View>
   );
 };
-
-const Stack = createStackNavigator();
-
-function nav() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="SessionScreen" component={SessionScreen} />
-    </Stack.Navigator>
-  );
-}
