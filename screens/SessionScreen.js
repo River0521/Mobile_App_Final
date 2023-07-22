@@ -1,11 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { Pedometer } from "expo-sensors";
 import { useState } from "react";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import MapView from "react-native-maps";
 
 export const SessionScreen = () => {
   const [PedomaterAvailability, SetPedomaterAvailability] = useState("");
@@ -67,6 +68,8 @@ export const SessionScreen = () => {
         <StatusBar style="auto" />
       </View>
 
+      <MapView className="mt-2" style={styles.map} />
+
       <View
         className="justify-center"
         style={{ position: "absolute", bottom: 50, width: "100%" }}
@@ -83,3 +86,11 @@ export const SessionScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  map: {
+    height: "70%",
+    width: "95%",
+    alignSelf: "center",
+  },
+});
