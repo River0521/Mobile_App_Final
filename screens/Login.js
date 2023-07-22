@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Modal, Pressable, Text, View, StyleSheet, TextInput } from 'react-native'
 
+
+
 export const Login = () => {
     const [modalVisible, setModalVisible] = useState(true);
     return (
@@ -27,6 +29,7 @@ export const Login = () => {
                 </View>
             </Modal>
         </View>
+
     );
 };
 
