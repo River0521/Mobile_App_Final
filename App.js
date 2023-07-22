@@ -1,9 +1,13 @@
 import React from "react";
-import StackNavigation from "./navigation/StackNavigation";
 import TabNavigation from "./navigation/TabNavigation";
+import { NavigationContainer } from "@react-navigation/native";
 
-function App({ StackNavigation }) {
-  return <StackNavigation />;
+function App() {
+  return (
+    <NavigationContainer>
+      <TabNavigation />
+    </NavigationContainer>
+  );
 }
 
 export default App;
