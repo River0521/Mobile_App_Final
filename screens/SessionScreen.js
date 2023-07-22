@@ -39,11 +39,11 @@ export const SessionScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View>
+      {/*<View>
         <Text style={{ textAlign: "center" }}>
           Is Pedometer available on the device : {PedomaterAvailability}
         </Text>
-      </View>
+  </View>*/}
 
       <View>
         <Text style={{ textAlign: "center" }}>{StepCount} Steps!</Text>
@@ -68,7 +68,7 @@ export const SessionScreen = () => {
         <StatusBar style="auto" />
       </View>
 
-      <MapView className="mt-2" style={styles.map} />
+      <MapView className="mt-2" style={styles.map} showsUserLocation />
 
       <View
         className="justify-center"
@@ -89,7 +89,7 @@ export const SessionScreen = () => {
 
 const styles = StyleSheet.create({
   map: {
-    height: "70%",
+    height: "72%",
     width: "95%",
     alignSelf: "center",
   },
