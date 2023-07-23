@@ -1,11 +1,10 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Pedometer } from "expo-sensors";
 import { useState } from "react";
 import { View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import MapView from "react-native-maps";
 
 export const SessionScreen = () => {

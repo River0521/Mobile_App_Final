@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { FlatList, Text, View, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { LeaderboardItems } from "./LeaderboardItems";
 
