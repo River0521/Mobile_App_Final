@@ -21,9 +21,9 @@ export const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <Text className="text-center text-4xl mt-10">Welcome, username!</Text>
+      <Text className="text-center text-4xl mt-10">Welcome, _Zae!</Text>
       <Text className="text-center text-2xl mt-1">
-        Your current HighScore is: 0 Steps!
+        Your current HighScore is: 34 Steps!
       </Text>
       <TouchableOpacity
         className="flex-auto bg-lime-200 mt-2 items-center mx-32 my-3 align-middle"

@@ -15,7 +15,7 @@ export const AccountScreen = () => {
       <Text className="text-2xl -mt-40 text-center">
         Account Session Information
       </Text>
-      <Text className="text-4xl mt-20 text-center">UserName</Text>
+      <Text className="text-4xl mt-20 text-center">_Zae</Text>
 
       <View>
         <View className="mt-10">
@@ -25,9 +25,9 @@ export const AccountScreen = () => {
           >
             Highest Scores:
           </Text>
-          <Text className="text-xl">Highest Steps: 0</Text>
-          <Text className="text-xl">Highest Distance: 0</Text>
-          <Text className="text-xl">Highest Calories Burned: 0</Text>
+          <Text className="text-xl">Highest Steps: 62</Text>
+          <Text className="text-xl">Highest Distance: 0.516 mi</Text>
+          <Text className="text-xl">Highest Calories Burned: 10.213</Text>
         </View>
 
         <View className="mt-10">
@@ -37,9 +37,9 @@ export const AccountScreen = () => {
           >
             Last Session Scores:
           </Text>
-          <Text className="text-xl">Last Session Steps: 0</Text>
-          <Text className="text-xl">Last Sessio Distance: 0</Text>
-          <Text className="text-xl">Last Sessio Calories Burned: 0</Text>
+          <Text className="text-xl">Last Session Steps: 10</Text>
+          <Text className="text-xl">Last Session Distance: 0.149 mi</Text>
+          <Text className="text-xl">Last Session Calories Burned: 0.416</Text>
         </View>
       </View>
     </View>

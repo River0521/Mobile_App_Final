@@ -25,6 +25,13 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": 
+      [[
+        "expo-location",
+        {
+          "isAndroidBackgroundLocationEnabled": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]]
   }
 }
