@@ -5,28 +5,6 @@ import axios from "axios";
 import "../global";
 
 export const AccountScreen = () => {
-  const [Acct, setAccount] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://10.0.2.2:3000/getUser")
-      .then((Acct) => setAccount(Acct.data))
-      .catch((err) => console.log(err));
-  }, []);
-
-  Acct.map((item) => {
-    console.log(item);
-    //console.log(item.UserName);
-    global.username = item.UserName;
-    global.highestStep = item.HighestSteps;
-    global.highestDistance = item.HighestDistance;
-    global.highestCalories = item.HighestCalories;
-    global.lastStep = item.LatestSteps;
-    global.lastDistance = item.LatestDistance;
-    global.lastCalories = item.LatestCalories;
-    console.log(global.username);
-  });
-
   return (
     <View
       style={{

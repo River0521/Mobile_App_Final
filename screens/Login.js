@@ -42,6 +42,12 @@ export const Login = () => {
         console.log("Login successful!");
         setModalVisible(false); // Close the modal after successful login
         global.username = user;
+        global.highestStep = response.data[0].HighestSteps;
+        global.highestDistance = response.data[1].HighestDistance;
+        global.highestCalories = response.data[0].HighestCalories;
+        global.lastStep = response.data[0].LatestSteps;
+        global.lastDistance = response.data[0].LatestDistance;
+        global.lastCalories = response.data[0].LatestCalories;
       })
       .catch((error) => {
         // Handle login error here (e.g., display error message)
