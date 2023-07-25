@@ -1,15 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
-  Pressable,
+  TouchableOpacity,
   Text,
   View,
   StyleSheet,
   TextInput,
 } from "react-native";
+import axios from "axios";
 
 export const Login = () => {
   const [modalVisible, setModalVisible] = useState(true);
+  const [user, setUser] = useState([]);
+  const [password, setPassword] = useState([]);
+  const [Acct, setAccount] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://10.0.2.2:3000/getUser/User?Login=" + { user })
+      .then((Acct) => setAccount(Acct.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(Acct);
+
+  Acct.map((item) => {
+    console.log(item);
+  });
+
+  const handlePassword = async (value) => {
+    setPassword(value);
+    console.log(value);
+  };
+
+  const handleUser = async (value) => {
+    setUser(value);
+    console.log(value);
+  };
+
+  handleLoginClick = () => {
+    if (password == item.Password) {
+      setModalVisible(!modalVisible);
+    }
+  };
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -24,20 +58,22 @@ export const Login = () => {
               limit={20}
               style={styles.textfield}
               placeholder="User Name"
+              onChangeText={handleUser}
             />
             <TextInput
               className="mt-3"
               placeholder="Password"
               secureTextEntry={true}
               style={styles.textfield}
+              onChangeText={handlePassword}
             />
-            <Pressable
+            <TouchableOpacity
               className="mt-3"
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={handleLoginClick}
             >
               <Text style={styles.textStyle}>Login</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>

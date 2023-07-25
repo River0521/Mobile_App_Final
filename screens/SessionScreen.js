@@ -8,6 +8,7 @@ import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import api from "../DataBase/axios";
 
 export const SessionScreen = () => {
   const [PedomaterAvailability, SetPedomaterAvailability] = useState("");
@@ -28,9 +29,6 @@ export const SessionScreen = () => {
   const [errorMsg, setErrorMsg] = useState(null);
   useEffect(() => {
     (async () => {
-      var latitude;
-      var longitude;
-
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         setErrorMsg("Permission to access location was denied");
@@ -39,8 +37,6 @@ export const SessionScreen = () => {
 
       let startlocation = await Location.getCurrentPositionAsync({});
       setLocation(startlocation);
-      latitude = location.coords.latitude;
-      longitude = location.coords.longitude;
     })();
   }, []);
 
