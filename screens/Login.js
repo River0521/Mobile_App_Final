@@ -11,10 +11,7 @@ import {
 import axios from "axios";
 import "../global";
 
-export var username;
-export var highestStep;
-
-export const Login = ({ navigation }) => {
+export const Login = () => {
   const [modalVisible, setModalVisible] = useState(true);
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -44,9 +41,7 @@ export const Login = ({ navigation }) => {
         // Handle successful login here (e.g., store user session, navigate to the next screen)
         console.log(response.data);
         console.log("Login successful!");
-        navigation.navigate("Home");
-        username = user;
-        highestStep = response.data.HighestSteps;
+        setModalVisible(false); // Close the modal after successful login
         global.username = user;
         global.highestStep = response.data.HighestSteps;
         global.highestDistance = response.data.HighestDistance;

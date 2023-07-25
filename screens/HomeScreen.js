@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Login } from "./Login";
 import "../global";
-import { username, highestStep } from "./Login";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export const HomeScreen = ({ navigation }) => {
-  console.log(username);
-  console.log(highestStep);
+  console.log(global.username);
 
   return (
     <View>
+      <Login />
       <View className="flex-row justify-end content-end justify-items-end">
         <TouchableOpacity className="flex-row items-center justify-end content-end justify-items-end">
           <MaterialCommunityIcons
@@ -25,10 +28,10 @@ export const HomeScreen = ({ navigation }) => {
       </View>
 
       <Text className="text-center text-4xl mt-10">
-        Welcome, <Text>{username}</Text>!
+        Welcome, {global.username}!
       </Text>
       <Text className="text-center text-2xl mt-1">
-        Your current HighScore is: {highestStep} Steps!
+        Your current HighScore is: {global.highestStep} Steps!
       </Text>
       <TouchableOpacity
         className="flex-auto bg-lime-200 mt-2 items-center mx-32 my-3 align-middle"
