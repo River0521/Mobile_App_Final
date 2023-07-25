@@ -8,40 +8,22 @@ import {
   TextInput,
 } from "react-native";
 import axios from "axios";
+import "../global";
 
 export const Login = () => {
   const [modalVisible, setModalVisible] = useState(true);
   const [user, setUser] = useState([]);
   const [password, setPassword] = useState([]);
-  const [Acct, setAccount] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://10.0.2.2:3000/getUser/User?Login=" + { user })
-      .then((Acct) => setAccount(Acct.data))
-      .catch((err) => console.log(err));
-  }, []);
-
-  console.log(Acct);
-
-  Acct.map((item) => {
-    console.log(item);
-  });
+  const [Acctt, setAccount] = useState([]);
 
   const handlePassword = async (value) => {
     setPassword(value);
-    console.log(value);
+    console.log(password);
   };
 
   const handleUser = async (value) => {
     setUser(value);
-    console.log(value);
-  };
-
-  handleLoginClick = () => {
-    if (password == item.Password) {
-      setModalVisible(!modalVisible);
-    }
+    console.log(user);
   };
 
   return (
@@ -70,7 +52,6 @@ export const Login = () => {
             <TouchableOpacity
               className="mt-3"
               style={[styles.button, styles.buttonClose]}
-              onPress={handleLoginClick}
             >
               <Text style={styles.textStyle}>Login</Text>
             </TouchableOpacity>
