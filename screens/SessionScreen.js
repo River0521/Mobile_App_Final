@@ -12,7 +12,7 @@ import api from "../DataBase/axios";
 
 export const SessionScreen = () => {
   const [PedomaterAvailability, SetPedomaterAvailability] = useState("");
-  const [StepCount, SetStepCount] = useState(41);
+  const [StepCount, SetStepCount] = useState(0);
 
   let finishClicked = false;
 

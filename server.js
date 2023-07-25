@@ -46,3 +46,13 @@ app.get("/getUser/User", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+app.get("/leaderboard", async (req, res) => {
+  try {
+    const leader = await User.find().sort({ HighestSteps: -1 }).limit(50);
+    //console.log(leader);
+    res.status(200).json(leader);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});

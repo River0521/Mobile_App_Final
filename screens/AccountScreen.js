@@ -18,6 +18,12 @@ export const AccountScreen = () => {
     console.log(item);
     //console.log(item.UserName);
     global.username = item.UserName;
+    global.highestStep = item.HighestSteps;
+    global.highestDistance = item.HighestDistance;
+    global.highestCalories = item.HighestCalories;
+    global.lastStep = item.LatestSteps;
+    global.lastDistance = item.LatestDistance;
+    global.lastCalories = item.LatestCalories;
     console.log(global.username);
   });
 
@@ -34,7 +40,7 @@ export const AccountScreen = () => {
       <Text className="text-2xl -mt-40 text-center">
         Account Session Information
       </Text>
-      <Text className="text-4xl mt-20 text-center">_Zae</Text>
+      <Text className="text-4xl mt-20 text-center">{global.username}</Text>
 
       <View>
         <View className="mt-10">
@@ -44,9 +50,13 @@ export const AccountScreen = () => {
           >
             Highest Scores:
           </Text>
-          <Text className="text-xl">Highest Steps: 62</Text>
-          <Text className="text-xl">Highest Distance: 0.516 mi</Text>
-          <Text className="text-xl">Highest Calories Burned: 10.213</Text>
+          <Text className="text-xl">Highest Steps: {global.highestStep}</Text>
+          <Text className="text-xl">
+            Highest Distance: {global.highestDistance} mi
+          </Text>
+          <Text className="text-xl">
+            Highest Calories Burned: {global.highestCalories}
+          </Text>
         </View>
 
         <View className="mt-10">
@@ -56,9 +66,13 @@ export const AccountScreen = () => {
           >
             Last Session Scores:
           </Text>
-          <Text className="text-xl">Last Session Steps: 10</Text>
-          <Text className="text-xl">Last Session Distance: 0.149 mi</Text>
-          <Text className="text-xl">Last Session Calories Burned: 0.416</Text>
+          <Text className="text-xl">Last Session Steps: {global.lastStep}</Text>
+          <Text className="text-xl">
+            Last Session Distance: {global.lastDistance} mi
+          </Text>
+          <Text className="text-xl">
+            Last Session Calories Burned: {global.lastCalories}
+          </Text>
         </View>
       </View>
     </View>

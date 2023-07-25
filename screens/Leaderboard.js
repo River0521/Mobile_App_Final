@@ -1,23 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Text, View, TouchableOpacity } from "react-native";
-import { Entypo } from "@expo/vector-icons";
-import { LeaderboardItems } from "./LeaderboardItems";
+import { FlatList, Text, View, StyleSheet } from "react-native";
+import axios from "axios";
 
 export const Leaderboard = () => {
-  const [leaderboard, setLeaderboard] = useState([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-  ]);
+  const [Acct, setAccount] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://10.0.2.2:3000/leaderboard") // Replace this URL with your actual API endpoint
+      .then((response) => setAccount(response.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <View>
-      <Text className="text-center text-4xl mt-10">Leaderboards</Text>
-      <FlatList data={leaderboard} renderItem={() => LeaderboardItems} />
+      <Text className="d text-2xl text-center mt-10">Leaderboard!</Text>
+      <View className="mt-5">
+        <FlatList
+          data={Acct}
+          renderItem={({ item, index }) => (
+            <View
+              className=" bg-violet-700 rounded-lg mt-2 ml-1"
+              style={{ width: "98%", height: 75 }}
+            >
+              <Text
+                className="text-2xl ml-2 mt-1"
+                style={{ fontWeight: "bold" }}
+              >
+                {index + 1}.
+              </Text>
+              <View className="-mt-6">
+                <Text className="text-center text-xl ">
+                  UserName: {item.UserName}
+                </Text>
+                <Text className="text-center text-xl align-middle">
+                  Score: {item.HighestSteps}
+                </Text>
+              </View>
+            </View>
+          )}
+          keyExtractor={(item, index) => index.toString()} // Provide a unique key for each item
+        />
+      </View>
     </View>
   );
 };
-
-const Item = () => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
