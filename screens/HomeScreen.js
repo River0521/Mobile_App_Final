@@ -26,7 +26,7 @@ export const HomeScreen = ({ navigation }) => {
 
   return (
     <View>
-      {/*<Login />*/}
+      <Login />
       <View className="flex-row justify-end content-end justify-items-end">
         <TouchableOpacity className="flex-row items-center justify-end content-end justify-items-end">
           <MaterialCommunityIcons

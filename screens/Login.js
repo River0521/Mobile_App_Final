@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Modal,
   TouchableOpacity,
@@ -6,24 +6,48 @@ import {
   View,
   StyleSheet,
   TextInput,
+  Alert,
 } from "react-native";
 import axios from "axios";
 import "../global";
 
 export const Login = () => {
   const [modalVisible, setModalVisible] = useState(true);
-  const [user, setUser] = useState([]);
-  const [password, setPassword] = useState([]);
-  const [Acctt, setAccount] = useState([]);
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handlePassword = async (value) => {
+  const handlePassword = (value) => {
     setPassword(value);
-    console.log(password);
   };
 
-  const handleUser = async (value) => {
+  const handleUser = (value) => {
     setUser(value);
-    console.log(user);
+  };
+
+  const handleLogin = () => {
+    // Validate user and password here (e.g., check if they're not empty)
+    if (!user || !password) {
+      Alert.alert("Error", "Please enter both username and password.");
+      return;
+    }
+
+    // Make the API call to authenticate the user (replace with your actual login API)
+    axios
+      .get(`http://10.0.2.2:3000/getUser/User?Login=${user}`, {
+        username: user,
+        password: password,
+      })
+      .then((response) => {
+        // Handle successful login here (e.g., store user session, navigate to the next screen)
+        console.log("Login successful!");
+        setModalVisible(false); // Close the modal after successful login
+        global.username = user;
+      })
+      .catch((error) => {
+        // Handle login error here (e.g., display error message)
+        console.log("Login error:", error);
+        Alert.alert("Error", "Invalid username or password. Please try again.");
+      });
   };
 
   return (
@@ -52,6 +76,7 @@ export const Login = () => {
             <TouchableOpacity
               className="mt-3"
               style={[styles.button, styles.buttonClose]}
+              onPress={handleLogin} // Add onPress event to trigger login logic
             >
               <Text style={styles.textStyle}>Login</Text>
             </TouchableOpacity>
