@@ -2,7 +2,6 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Leaderboard } from "../screens/Leaderboard";
 import { AntDesign, Entypo } from "@expo/vector-icons";
-import { HomeScreen } from "../screens/HomeScreen";
 import HomeNavigation from "./HomeNavigation";
 
 const Tab = createBottomTabNavigator();

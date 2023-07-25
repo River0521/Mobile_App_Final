@@ -1,32 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-import { Login } from "./Login";
 import "../global";
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { username, highestStep } from "./Login";
 
 export const HomeScreen = ({ navigation }) => {
-  const [Acct, setAccount] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://10.0.2.2:3000/getUser")
-      .then((Acct) => setAccount(Acct.data))
-      .catch((err) => console.log(err));
-  }, []);
-
-  Acct.map((item) => {
-    //console.log(item);
-    //console.log(item.UserName);
-    global.username = item.UserName;
-    global.highestStep = item.HighestSteps;
-  });
+  console.log(username);
+  console.log(highestStep);
 
   return (
     <View>
-      <Login />
       <View className="flex-row justify-end content-end justify-items-end">
         <TouchableOpacity className="flex-row items-center justify-end content-end justify-items-end">
           <MaterialCommunityIcons
@@ -42,10 +25,10 @@ export const HomeScreen = ({ navigation }) => {
       </View>
 
       <Text className="text-center text-4xl mt-10">
-        Welcome, {global.username}!
+        Welcome, <Text>{username}</Text>!
       </Text>
       <Text className="text-center text-2xl mt-1">
-        Your current HighScore is: {global.highestStep} Steps!
+        Your current HighScore is: {highestStep} Steps!
       </Text>
       <TouchableOpacity
         className="flex-auto bg-lime-200 mt-2 items-center mx-32 my-3 align-middle"
