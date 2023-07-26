@@ -56,6 +56,9 @@ export const Login = () => {
         console.log("Login error:", error);
         Alert.alert("Error", "Invalid username or password. Please try again.");
       });
+
+    console.log(user);
+    console.log(user);
   };
 
   return (

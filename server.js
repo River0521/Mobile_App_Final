@@ -35,6 +35,21 @@ app.get("/getUser", async (req, res) => {
   }
 });
 
+app.get("/getUser/Login", async (req, res) => {
+  try {
+    const { user, pass } = req.params;
+    console.log(req.params);
+    const CheckUser = await User.findOne({
+      UserName: user,
+      Password: pass,
+    }).exec();
+    console.log(CheckUser);
+    res.status(200).json(CheckUser);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.get("/getUser/User", async (req, res) => {
   try {
     const { user } = req.params;
@@ -48,6 +63,16 @@ app.get("/getUser/User", async (req, res) => {
 });
 
 app.get("/leaderboard", async (req, res) => {
+  try {
+    const leader = await User.find().sort({ HighestSteps: -1 }).limit(50);
+    //console.log(leader);
+    res.status(200).json(leader);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.post("/upd/", async (req, res) => {
   try {
     const leader = await User.find().sort({ HighestSteps: -1 }).limit(50);
     //console.log(leader);

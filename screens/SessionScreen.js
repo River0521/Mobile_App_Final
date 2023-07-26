@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Modal, Alert } from "react-native";
 import { Pedometer } from "expo-sensors";
 import { useState } from "react";
 import { View } from "react-native";
@@ -9,10 +9,15 @@ import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import api from "../DataBase/axios";
+import "../global";
+
+const highest = global.highestStep == undefined ? 1 : global.highestStep;
 
 export const SessionScreen = () => {
   const [PedomaterAvailability, SetPedomaterAvailability] = useState("");
-  const [StepCount, SetStepCount] = useState(0);
+  const [StepCount, SetStepCount] = useState(150);
+  const [congratsModalVisible, setCongratsModalVisible] = useState(false);
+  const [unfortunateModalVisible, setUnfortunateModalVisible] = useState(false);
 
   let finishClicked = false;
 
@@ -21,11 +26,33 @@ export const SessionScreen = () => {
   var cal = DistanceCovered * 60;
   var caloriesBurnt = cal.toFixed(4);
 
+  const winAlr = () =>
+    Alert.alert("Woo-Hoo", "You Won", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ]);
+
+  const LoseAlr = () =>
+    Alert.alert("Awww", "You Lost", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ]);
+
   React.useEffect(() => {
     subscribe();
   }, []);
 
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState({
+    coords: { latitude: 0, longitude: 0 },
+  });
   const [errorMsg, setErrorMsg] = useState(null);
   useEffect(() => {
     (async () => {
@@ -90,9 +117,17 @@ export const SessionScreen = () => {
         <StatusBar style="auto" />
       </View>
 
-      <MapView className="mt-2" style={styles.map} showsUserLocation>
-        <Marker coordinate={{ latitude: 0, longitude: 0 }} />
-      </MapView>
+      <MapView
+        className="mt-2"
+        style={styles.map}
+        showsUserLocation
+        region={{
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 1,
+          longitudeDelta: 1,
+        }}
+      ></MapView>
 
       <View
         className="justify-center"
@@ -107,7 +142,18 @@ export const SessionScreen = () => {
           <MaterialCommunityIcons name="restart" size={24} color="#449DD1" />
           <Text className="pl-3">Restart Session!</Text>
         </TouchableOpacity>
-        <TouchableOpacity className="flex-row align-bottom justify-center">
+        <TouchableOpacity
+          className="flex-row align-bottom justify-center"
+          onPress={() => {
+            console.log("StepCount: " + StepCount);
+            console.log("HighestStep: " + highest);
+            if (StepCount > highest) {
+              winAlr();
+            } else {
+              LoseAlr();
+            }
+          }}
+        >
           <Octicons name="stop" size={24} color="#449DD1" />
           <Text className="pl-3">Finish Session!</Text>
         </TouchableOpacity>
@@ -121,5 +167,57 @@ const styles = StyleSheet.create({
     height: "72%",
     width: "95%",
     alignSelf: "center",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#42D1A6",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    padding: 10,
+    elevation: 2,
+  },
+  textfield: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: "#00F33D",
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  exclamationStyle: {
+    fontWeight: "bold",
+    fontSize: 18,
+    color: "black",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
   },
 });
